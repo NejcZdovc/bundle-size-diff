@@ -1,0 +1,37 @@
+{
+  "name": "bundle-size-diff",
+  "version": "1.0.0",
+  "description": "Github action for getting bundle size diffs for PR's",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "build": "ncc build index.js --license licenses.txt",
+    "build-demo": "webpack --config demo/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NejcZdovc/bundle-size-diff.git"
+  },
+  "keywords": [],
+  "author": "Nejc Zdovc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NejcZdovc/bundle-size-diff/issues"
+  },
+  "homepage": "https://github.com/NejcZdovc/bundle-size-diff#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {
+    "standard": "^16.0.3",
+    "webpack": "^5.10.0",
+    "webpack-bundle-analyzer": "^4.2.0",
+    "webpack-cli": "^4.2.0"
+  },
+  "standard": {
+    "ignore": [
+      "dist"
+    ]
+  }
+}
