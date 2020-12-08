@@ -1,0 +1,33 @@
+name: 'Bundle size diff'
+author: 'Nejc Zdovc'
+description: 'Report webpack bundle size change in the PR'
+inputs:
+  base_path:
+    description: 'Path to base stats file'
+    required: true
+  pr_path:
+    description: 'Path to PR stats file'
+    required: true
+outputs:
+  success:
+    description: 'Reports back success, boolean as string'
+  base_file_size:
+    description: 'Bundle size of base branch that you are targeting in the PR in bytes'
+  base_file_string:
+    description: 'Formatted bundle size of base branch'
+  pr_file_size:
+    description: 'Bundle size of PR branch in bytes'
+  pr_file_string:
+    description: 'Formatted bundle size of pr branch'
+  diff_file_size:
+    description: 'Diff size of compared branches in bytes'
+  diff_file_string:
+    description: 'Formatted diff size between branches'
+  percent:
+    description: 'Diff size of compared presented in percentage'
+branding:
+  icon: bar-chart-2
+  color: orange
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
