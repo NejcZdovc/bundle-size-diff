@@ -10,6 +10,7 @@ Action that allows you to generate diff report between branches. This way you al
 | ---- | ----------- | -------- |
 | base_path | Path of base branch stats file  | yes |
 | pr_path | Path of PR branch stats file | yes |
+| excluded_assets | Regex that will exclude some assets | no |
 
 ## Output
 

@@ -8,6 +8,9 @@ inputs:
   pr_path:
     description: 'Path to PR stats file'
     required: true
+  excluded_assets:
+    description: 'Regex that will exclude some assets'
+    required: false
 outputs:
   success:
     description: 'Reports back success, boolean as string'

@@ -12,25 +12,33 @@ const { getStatsDiff } = __webpack_require__(493)
 
 const getInputs = () => ({
   basePath: core.getInput('base_path'),
-  prPath: core.getInput('pr_path')
+  prPath: core.getInput('pr_path'),
+  excludedAssets: core.getInput('excluded_assets')
 })
 
 const checkPaths = async () => {
-  const { basePath, prPath } = getInputs()
+  const { basePath, prPath, excludedAssets } = getInputs()
   const base = path.resolve(process.cwd(), basePath)
   const pr = path.resolve(process.cwd(), prPath)
 
   const baseInclude = require(base)
-  const baseAssets = baseInclude && baseInclude.assets
+  let baseAssets = baseInclude && baseInclude.assets
   if (!baseAssets) {
     throw new Error(`Base path is not correct. Current input: ${base}`)
   }
 
   const prInclude = require(pr)
-  const prAssets = prInclude && prInclude.assets
+  let prAssets = prInclude && prInclude.assets
   if (!prAssets) {
     throw new Error(`Pr path is not correct. Current input: ${pr}`)
   }
+
+  if (excludedAssets) {
+    const regex = new RegExp(excludedAssets)
+    baseAssets = baseAssets.filter(asset => !asset.name.match(regex))
+    prAssets = prAssets.filter(asset => !asset.name.match(regex))
+  }
+
 
   return {
     base: baseAssets,
