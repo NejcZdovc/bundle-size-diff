@@ -28,13 +28,13 @@ Action that allows you to generate diff report between branches. This way you al
 ## Usage
 The key thing that you will need to do when using this action is to create a stats file from webpack.
 
-You can see the simple [example](webpack_example) that we used in this repo for testing purposes.<br>
-You can read more about `webpack-bundle-analyzer` on [authors page](author_page).
+You can see the simple [example](/demo) that we used in this repo for testing purposes.<br>
+You can read more about `webpack-bundle-analyzer` on [authors page](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
 To save action minutes I would suggest that you have an action that generates a new state file every time that you merge commit
 in the main branch.
 
-An alternative approach is to generate a state file for a base branch on the fly. This approach we used in [our example](workflow) as it's a little bit more complicated.
+An alternative approach is to generate a state file for a base branch on the fly. This approach we used in [our example](/.github/workflows/example.yml) as it's a little bit more complicated.
 
 Let's break down our workflow file.
 
@@ -47,7 +47,7 @@ This tells action to checkout base that you set for the PR.
 Then we just do regular dependency install and build of our script.
 
 The next section is crucial. We are doing multiple jobs to build stats files so we need to store this data between runs.
-To accomplish that we will be using [artifacts](artifacts). Because we only need this data for short period I like to set expiration to 1 day `retention-days: 1`.
+To accomplish that we will be using [artifacts](https://docs.github.com/en/free-pro-team@latest/actions/guides/storing-workflow-data-as-artifacts). Because we only need this data for short period I like to set expiration to 1 day `retention-days: 1`.
 
 ```yaml
 build-base:
@@ -105,9 +105,9 @@ build-pr:
 ```
 
 ### Compare builds
-Now that we have stats files ready, we just need to download them which we are doing with `actions/download-artifact`, and pass them to our action.
+Now that we have stats files ready, we just need to download them which we are doing with [actions/download-artifact](https://github.com/actions/download-artifact), and pass them to our action.
 
-In the last section, we take values that were returned from our action and print it out as a nice table via `NejcZdovc/comment-pr`.
+In the last section, we take values that were returned from our action and print it out as a nice table via [NejcZdovc/comment-pr](https://github.com/NejcZdovc/comment-pr).
 
 ```yaml
 report:
@@ -155,10 +155,4 @@ Please file an issue for bugs, missing documentation, or unexpected behavior.
 
 ## LICENSE
 
-[MIT](license)
-
-[license]: https://github.com/NejcZdovc/comment-pr/blob/master/LICENSE
-[webpack_example]: https://github.com/NejcZdovc/bundle-size-diff/blob/main/demo/webpack.config.js
-[author_page]: https://github.com/webpack-contrib/webpack-bundle-analyzer
-[workflow]: https://github.com/NejcZdovc/bundle-size-diff/blob/main/.github/workflows/example.yml
-[artifacts]: https://docs.github.com/en/free-pro-team@latest/actions/guides/storing-workflow-data-as-artifacts
+[MIT](/LICENSE)
